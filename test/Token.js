@@ -13,7 +13,7 @@ describe('Tucan', ()=> {
 		exchange
 
 	beforeEach( async ()=> {
-		const Token =await ethers.getContractFactory('Tucan')
+		const Token =await ethers.getContractFactory('Token')
 		token = await Token.deploy('Tucan', 'TUCU', "1000000")
 
 		accounts = await ethers.getSigners()
