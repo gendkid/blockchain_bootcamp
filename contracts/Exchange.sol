@@ -120,7 +120,7 @@ contract Exchange {
 	{
 		require(balanceOf(_tokenGive, msg.sender) >= _amountGive);
 
-		orderCount = orderCount + 1;
+		orderCount ++;
 
 		orders[orderCount] =_Order(
 			orderCount,
@@ -154,7 +154,6 @@ contract Exchange {
 
 		orderCancelled[_id] = true;
 
-
 		emit Cancel(
 		_order.id,
 		msg.sender,
@@ -173,7 +172,6 @@ contract Exchange {
         require(!orderFilled[_id]);
 
         require(!orderCancelled[_id]);
-
 
         _Order storage _order = orders[_id];
 
