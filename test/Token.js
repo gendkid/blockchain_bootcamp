@@ -5,7 +5,7 @@ const tokens = (n) => {
 	return ethers.utils.parseUnits( n.toString(), 'ether' )
 }
 
-describe('Tucan', ()=> {
+describe('Token', ()=> {
 	let token,
 		accounts,
 		deployer,
@@ -14,7 +14,7 @@ describe('Tucan', ()=> {
 
 	beforeEach( async ()=> {
 		const Token =await ethers.getContractFactory('Token')
-		token = await Token.deploy('Tucan', 'TUCU', "1000000")
+		token = await Token.deploy('Tucan', 'TUCU', '1000000')
 
 		accounts = await ethers.getSigners()
 		deployer = accounts[0]
