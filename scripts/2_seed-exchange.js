@@ -62,11 +62,12 @@ async function main() {
   console.log(`Deposited ${amount} Tucan tokens from ${user2.address}`)
 
   //user1 makeOrder to cancel
-  let orderId, event, args
+  let orderId
   transaction = await exchange.connect(user1).makeOrder(Tucan.address, tokens(10), mETH.address, tokens(5))
   result = await transaction.wait()
-  event = result.events[0]
- 
+  console.log(await result.events[0])
+
+
   console.log(`Made order from ${user1.address}`)
 
   //User 1 cancels order
@@ -147,7 +148,6 @@ async function main() {
   //   // Wait 1 second
     await wait(1)
   }
-
 }
 
 main()
@@ -156,3 +156,4 @@ main()
     console.error(error);
     process.exit(1);
   });
+  
