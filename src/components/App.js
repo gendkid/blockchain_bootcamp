@@ -6,7 +6,8 @@ import {
   loadProvider, 
   loadNetwork, 
   loadAccount, 
-  loadToken 
+  loadTokens,
+  loadExchange
 } from '../store/interactions';
 
 function App() {
@@ -14,15 +15,21 @@ function App() {
 
   // Connect to Blockchain
   const loadBlockchainData = async ()=> {
-    const account = await loadAccount(dispatch)
-    console.log(account)
+
 
     // Connect to Network/ User information
     const provider = loadProvider(dispatch)
     const chainId = await loadNetwork(provider, dispatch)
+    await loadAccount(provider,dispatch)
 
     // Fetch token smart contracts
-    await loadToken(provider, config[chainId].Tucan.address, dispatch)
+    const Tucan = config[chainId].Tucan
+    const mETH = config[chainId].mETH
+    await loadTokens(provider, [Tucan.address, mETH.address], dispatch)
+
+    // Fetch exchange smart contract
+    const exchange = config[chainId].exchange
+    await loadExchange(provider, exchange.address, dispatch)
     }
 
   useEffect(()=> {
